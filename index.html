@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>장프로 보험 컨설팅</title>
+  <meta property="og:title" content="장프로 보험 컨설팅">
+  <meta property="og:description" content="9년차 전문 보험 컨설턴트가 제공하는 맞춤형 보험 설계, 무료 상담 신청하세요!">
+  <meta property="og:image" content="https://i.imgur.com/rXlGqUG.jpeg">
+  <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.20.15/babel.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Gulim', sans-serif;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInOut {
+      0% { opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+    .animate-fadeInUp {
+      animation: fadeInUp 0.5s ease-out forwards;
+    }
+    .animate-testimonial {
+      animation: fadeInOut 3s ease-in-out infinite; /* 고객 후기 텍스트 3초 */
+    }
+    .animate-insurance {
+      animation: fadeInOut 4s ease-in-out infinite; /* 보험 중요성 4초 */
+    }
+    h2 {
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* 제목 입체감 */
+    }
+  </style>
+</head>
+<body className="bg-black">
+  <div id="root"></div>
+  <script type="text/babel">
+    const { useState, useEffect } = React;
+
+    function Header() {
+      return (
+        <header className="bg-black text-white py-6 sticky top-0 shadow-lg z-10">
+          <div className="container mx-auto px-4 text-center">
+            <div className="bg-gray-800 p-4 rounded-lg shadow-md">
+              <p className="text-2xl font-extrabold">9년차 전문 보험 컨설턴트, 정직과 신뢰의 금융 파트너</p>
+            </div>
+          </div>
+        </header>
+      );
+    }
+
+    function Intro() {
+      return (
+        <section id="intro" className="py-16 bg-black">
+          <div className="container mx-auto px-4">
+            <div className="bg-gray-800 p-4 rounded-lg shadow-md text-center mb-8">
+              <h2 className="text-4xl font-extrabold text-white">컨설턴트 프로필</h2>
+            </div>
+            <div className="flex flex-col md:flex-row items-center max-w-4xl mx-auto bg-gray-800/80 p-6 rounded-lg shadow-lg">
+              <img
+                src="https://i.imgur.com/rXlGqUG.jpeg"
+                alt="장프로 프로필"
+                className="w-80 h-[400px] object-cover rounded-lg mb-6 md:mb-0 md:mr-8 shadow-md animate-fadeInUp max-w-full"
+              />
+              <div className="text-center md:text-left">
+                <h3 className="text-2xl font-extrabold mb-4 text-white">장프로 보험설계사</h3>
+                <p className="text-lg font-bold mb-4 text-gray-200">
+                  안녕하세요, 고객 중심의 맞춤형 보험 설계로 신뢰를 쌓아온 장프로입니다.<br />
+                  9년간 3,000건 이상의 상담 경험으로 최적의 금융 솔루션을 제공합니다.
+                </p>
+                <ul className="list-none text-lg font-bold space-y-2 text-gray-200">
+                  <li className="flex items-center">
+                    <span className="text-blue-400 mr-2">✔</span> 9년 경력 / 누적 상담 3,000건 이상
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-blue-400 mr-2">✔</span> 전문 자격: 생명·손해보험, AFPK
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-blue-400 mr-2">✔</span> 생명보험, 실손보험, 노후·자녀·기업 컨설팅
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    function Testimonials() {
+      const testimonials = [
+        { text: "장믿음 설계사님 덕분에 보험료 44만원에 17만원으로 줄었어요!" },
+        { text: "장프로보험 구독하고 보험정보 정말 많이 얻어갑니다!" },
+        { text: "가족력으로 암이 걱정되는데 ,, 덕분에 제대로 암보험 가입했네요" },
+        { text: "아버니 암진단비 청구 도와주셔서 정말 감사했습니다" },
+        { text: "암보험을 정말 꼼꼼하게 비교해서 제일 저렴하게 추천해주셨어요" }
+      ];
+      const images = [
+        "https://i.imgur.com/TPovFaP.jpeg",
+        "https://i.imgur.com/4UKyGkQ.jpeg",
+        "https://i.imgur.com/YpcZn1z.jpeg"
+      ];
+      const [currentIndex, setCurrentIndex] = useState(0);
+
+      useEffect(() => {
+        const interval = setInterval(() => {
+          setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
+        }, 3000); // 3초 간격
+        return () => clearInterval(interval);
+      }, []);
+
+      return (
+        <section id="testimonials" className="py-16 bg-gray-800">
+          <div className="container mx-auto px-4">
+            <div className="bg-gray-800 p-4 rounded-lg shadow-md text-center mb-6">
+              <h2 className="text-3xl font-extrabold text-white">고객 후기</h2>
+            </div>
+            <div className="flex flex-col items-center">
+              <div className="grid grid-cols-1 gap-4 mb-6 w-full max-w-5xl">
+                {images.map((img, index) => (
+                  <img
+                    key={index}
+                    src={img}
+                    alt={`고객 후기 이미지 ${index + 1}`}
+                    className="w-full h-64 object-cover rounded-lg shadow-md animate-fadeInUp max-w-full"
+                  />
+                ))}
+              </div>
+              <div className="animate-testimonial text-center bg-gray-700 p-4 rounded-lg max-w-2xl">
+                <p className="text-xl font-bold text-white" style={{ fontStyle: 'normal' }}>
+                  “{testimonials[currentIndex].text}”
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    function CustomerCare() {
+      const images = [
+        "https://i.imgur.com/nM05fHW.jpeg",
+        "https://i.imgur.com/LtJcUKE.jpeg",
+        "https://i.imgur.com/2dZfFoJ.jpeg",
+        "https://i.imgur.com/3lCAt7L.jpeg",
+        "https://i.imgur.com/lplBE18.jpeg",
+        "https://i.imgur.com/afqDmhq.jpeg"
+      ];
+
+      return (
+        <section id="customer-care" className="py-16 bg-black">
+          <div className="container mx-auto px-4">
+            <div className="bg-gray-800 p-4 rounded-lg shadow-md text-center mb-6">
+              <h2 className="text-3xl font-extrabold text-white">고객 관리</h2>
+            </div>
+            <div className="grid grid-cols-1 gap-4 w-full max-w-5xl">
+              {images.map((img, index) => (
+                <img
+                  key={index}
+                  src={img}
+                  alt={`고객 관리 이미지 ${index + 1}`}
+                  className="w-full h-[400px] object-cover rounded-lg shadow-md max-w-full"
+                />
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    function SocialMedia() {
+      const videos = [
+        "https://www.youtube.com/embed/UPpDOI2uDQI",
+        "https://www.youtube.com/embed/5vl4V0vTEhw",
+        "https://www.youtube.com/embed/OMvYGzkXaos",
+        "https://www.youtube.com/embed/ZR7gg2W1NGM",
+        "https://www.youtube.com/embed/D8oHadUI60s",
+        "https://www.youtube.com/embed/dQ4Lrwozk1w"
+      ];
+
+      return (
+        <section id="social" className="py-16 bg-black">
+          <div className="container mx-auto px-4">
+            <div className="bg-gray-800 p-4 rounded-lg shadow-md text-center mb-6">
+              <h2 className="text-3xl font-extrabold text-white">유튜브 장프로보험</h2>
+            </div>
+            <div className="grid grid-cols-1 gap-4 w-full max-w-5xl">
+              {videos.map((video, index) => (
+                <iframe
+                  key={index}
+                  className="w-full h-64 md:h-80 rounded-lg max-w-full"
+                  src={video}
+                  title={`유튜브 장프로보험 영상 ${index + 1}`}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    function InsuranceImportance() {
+      const slides = [
+        {
+          title: "갱신형 보험! 보험금 폭탄!?",
+          text: "갱신형 보험의 위험성을 알아보고, 장프로와 함께 최적의 플랜을 설계하세요.",
+          img: "https://i.imgur.com/GHQCqed.jpeg"
+        },
+        {
+          title: "매월 400만원 이상의 간병비 !?! 간병파산의 위험",
+          text: "간병비 부담으로부터 가족을 지키세요. 장프로와 상담하세요.",
+          img: "https://i.imgur.com/r7e67PT.png"
+        },
+        {
+          title: "꿈의 암치료기 중입자방사선치료! 치료시간 단 2분 비용은..?",
+          text: "첨단 암치료 비용을 보험으로 대비하세요.",
+          img: "https://i.imgur.com/2OASxYQ.png"
+        }
+      ];
+      const [currentIndex, setCurrentIndex] = useState(0);
+
+      useEffect(() => {
+        const interval = setInterval(() => {
+          setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length);
+        }, 4000); // 4초 간격
+        return () => clearInterval(interval);
+      }, []);
+
+      return (
+        <section id="insurance-importance" className="py-16 bg-black">
+          <div className="container mx-auto px-4">
+            <div className="bg-gray-800 p-4 rounded-lg shadow-md text-center mb-6">
+              <h2 className="text-3xl font-extrabold text-white">보험의 중요성</h2>
+            </div>
+            <div className="flex flex-col md:flex-row items-center max-w-4xl mx-auto animate-insurance">
+              <img
+                src={slides[currentIndex].img}
+                alt={slides[currentIndex].title}
+                className="w-full md:w-1/2 h-48 md:h-64 object-cover rounded-lg mb-4 md:mr-6 md:mb-0 shadow-md max-w-full"
+              />
+              <div className="text-center md:text-left">
+                <h3 className="text-xl font-extrabold mb-2 text-white">{slides[currentIndex].title}</h3>
+                <p className="text-lg font-bold text-gray-200">{slides[currentIndex].text}</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    function Services() {
+      const services = [
+        { name: "가족 맞춤 보험 설계", link: "https://open.kakao.com/o/sZkBkLGf" },
+        { name: "기업 절세 및 상속 플랜", link: "https://open.kakao.com/o/sZkBkLGf" },
+        { name: "기존 보험 리모델링", link: "https://open.kakao.com/o/sZkBkLGf" },
+        { name: "상해/실손/종합보장 패키지", link: "https://open.kakao.com/o/sZkBkLGf" }
+      ];
+      return (
+        <section id="services" className="py-16 bg-black">
+          <div className="container mx-auto px-4">
+            <div className="bg-gray-800 p-4 rounded-lg shadow-md text-center mb-6">
+              <h2 className="text-3xl font-extrabold text-white">주요 서비스</h2>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
+              {services.map((service, index) => (
+                <a
+                  key={index}
+                  href={service.link}
+                  className="bg-gray-800 p-6 rounded-lg shadow-md border-2 border-blue-400 hover:bg-gray-700 transition-all text-center animate-fadeInUp"
+                >
+                  <p className="text-lg font-bold text-white">{service.name}</p>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    function Contact() {
+      return (
+        <section id="contact" className="py-16 bg-cover bg-center backdrop-blur-sm brightness-75" style={{ backgroundImage: `url(https://i.imgur.com/TA0ZQT2.jpeg)`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+          <div className="container mx-auto px-4 text-center">
+            <div className="bg-gray-800/90 p-6 rounded-lg z-10 max-w-lg mx-auto">
+              <div className="bg-gray-800 p-4 rounded-lg shadow-md mb-6">
+                <h2 className="text-3xl font-extrabold text-white">지금 무료 상담 신청하기</h2>
+              </div>
+              <p className="text-lg font-bold mb-4 text-gray-200">1:1 오픈채팅으로 빠르게 연결됩니다</p>
+              <a
+                href="https://open.kakao.com/o/sZkBkLGf"
+                className="inline-block bg-gray-800 text-white px-8 py-3 rounded-full font-bold hover:bg-gray-700 transition-colors animate-fadeInUp"
+              >
+                상담 신청
+              </a>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    function Footer() {
+      return (
+        <footer className="bg-black text-white py-6">
+          <div className="container mx-auto px-4 text-center">
+            <p className="font-bold text-gray-200">ⓒ 2025 장프로 보험설계사 | 본 페이지는 정보 제공용입니다.</p>
+          </div>
+        </footer>
+      );
+    }
+
+    function App() {
+      return (
+        <div>
+          <Header />
+          <Intro />
+          <Testimonials />
+          <CustomerCare />
+          <SocialMedia />
+          <InsuranceImportance />
+          <Services />
+          <Contact />
+          <Footer />
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
+</body>
+</html>
